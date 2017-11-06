@@ -14,7 +14,6 @@ function todoModule(containerElement) {
 
     }
 
-
     function markTodoItemAsDone() {
         var buttons = document.getElementsByClassName("done");
         var i;
@@ -26,31 +25,35 @@ function todoModule(containerElement) {
         }
     }
 
-    function addViaForm() {
-        var newDiv = document.createElement("div");
-        newDiv.className = "col-xs-3";
-        var name = document.getElementById("name").value;
-        var priority = document.getElementById("priority").value;
-        newDiv.innerHTML = name + ", priority: " + priority;
-        var space = document.createElement("p");
-        var doButton = document.createElement("button");
-        doButton.className = "done";
-        doButton.innerHTML = "Mark as done";
-        newDiv.appendChild(space);
-        newDiv.appendChild(doButton);
-        var todoList = document.getElementById("todoList");
-        todoList.appendChild(newDiv);
-    }
-
-    var button = document.getElementById("addBtn");
-    button.addEventListener("click", addViaForm);
-
     return {
         addTodoItem: addTodoItem,
         markTodoItemAsDone: markTodoItemAsDone
     }
 
 }
+
+function addViaForm() {
+    var newDiv = document.createElement("div");
+    newDiv.className = "col-xs-3";
+    var name = document.getElementById("name").value;
+    var priority = document.getElementById("priority").value;
+    newDiv.innerHTML = name + ", priority: " + priority;
+    var space = document.createElement("p");
+    var doButton = document.createElement("button");
+    doButton.className = "done";
+    doButton.innerHTML = "Mark as done";
+    doButton.onclick = function () {
+        var div = this.parentElement;
+        div.innerHTML = "Done!"
+    }
+    newDiv.appendChild(space);
+    newDiv.appendChild(doButton);
+    var todoList = document.getElementById("todoList");
+    todoList.appendChild(newDiv);
+}
+
+var button = document.getElementById("addBtn");
+button.addEventListener("click", addViaForm);
 
 var t = todoModule("todoList");
 t.addTodoItem("Shopping", 1);
