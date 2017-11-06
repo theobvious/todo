@@ -1,0 +1,11 @@
+.row {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+.col-xs-3 {
+    border: 1px dashed;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
